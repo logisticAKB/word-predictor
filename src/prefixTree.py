@@ -35,11 +35,31 @@ class PrefixTree:
                 return child
         return None
 
+    def query(self, cur_node, word, s):
+        for i in range(len(word)):
+            new_node = self.node_has_child(cur_node, word[i])
+            if new_node:
+                cur_node = new_node
+                s += cur_node.data
+            else: return
+        self.show_all(cur_node, s)
+
+    def show_all(self, cur_node, s):
+        for child in cur_node.children:
+            if child.is_key: print(s + child.data)
+            self.show_all(child, s + child.data)
+
 
 pt = PrefixTree()
 file = open("dictionary.txt", "r")
 for line in file:
     word = line.strip()
     pt.insert_word(word)
-
 file.close()
+
+# It works just for one word
+s = input("Start typing letters: ")
+while s[len(s) - 1] != ' ':
+    pt.query(pt.root, s, '')
+    print("Continue typing: " + s, end='')
+    s += input()
