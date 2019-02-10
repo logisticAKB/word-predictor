@@ -1,5 +1,5 @@
 import tkinter as tk
-import src.prefixTree as tree
+from prefix_trie import PrefixTree
 
 
 WINDOW_WIDTH = 450
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = Main(root)
     app.pack()
-    pt = tree.PrefixTree()
+    pt = PrefixTree()
     gui = GUI()
 
     root.title("Word predictor")
