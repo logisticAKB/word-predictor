@@ -18,6 +18,12 @@ class PrefixTree:
     def __init__(self):
         self.root = TreeNode("", [], False)
 
+        file = open("dictionary.txt", "r")
+        for line in file:
+            word = line.strip()
+            self.insert_word(word)
+        file.close()
+
     def insert_word(self, word):
         cur_node = self.root
         for i in range(len(word)):
@@ -50,16 +56,11 @@ class PrefixTree:
             self.show_all(child, s + child.data)
 
 
-pt = PrefixTree()
-file = open("dictionary.txt", "r")
-for line in file:
-    word = line.strip()
-    pt.insert_word(word)
-file.close()
+'''pt = PrefixTree()
 
 # It works just for one word
 s = input("Start typing letters: ")
 while s[len(s) - 1] != ' ':
     pt.query(pt.root, s, '')
     print("Continue typing: " + s, end='')
-    s += input()
+    s += input()'''
