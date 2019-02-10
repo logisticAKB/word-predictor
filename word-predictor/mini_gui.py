@@ -13,7 +13,7 @@ class Main(tk.Frame):
 
 class GUI():
     def __init__(self):
-        self.cur_word = ''
+        pass
 
     def center(self, win):
         win.update_idletasks()
@@ -30,25 +30,20 @@ class GUI():
         win.update_idletasks()
         txt.config(width=win.winfo_width(), height=win.winfo_height())
 
-    def get_cur_word(self):
-        return self.cur_word
-
-    def set_cur_word(self, cur_word):
-        self.cur_word = cur_word
+    def get_word(self, string):
+        string = string[::-1]
+        word = ""
+        for char in string:
+            if char == ' ': break
+            word += char
+        return word[::-1]
 
 
 def print_words(event):
-    new_char = chr(event.keycode).lower()
-    if new_char.isalpha():
-        gui.set_cur_word(gui.get_cur_word() + new_char)
-    elif new_char.isspace():
-        gui.set_cur_word('')
-    elif event.keycode == 8:
-        word = gui.get_cur_word()
-        gui.set_cur_word(word[:len(word) - 1])
-    pt.query(pt.root, gui.get_cur_word(), '')
+    new_string = text.get(1.0, tk.END)
+    word = gui.get_word(new_string)
+    pt.query(pt.root, word.strip(), '')
     print("|---------------------------------------|")
-    #print(gui.get_cur_word())
 
 
 if __name__ == "__main__":
