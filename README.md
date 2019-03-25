@@ -8,3 +8,4 @@ Autocomplete words based on entered characters and our local dictionary.
   - Enter `space` to start new suggestions list.
   - `dictionary.txt` contains all possible suggestions.
 testtesttest
+ test22
